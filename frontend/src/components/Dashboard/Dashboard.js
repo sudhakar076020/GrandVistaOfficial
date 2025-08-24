@@ -4,7 +4,7 @@ import {format} from "date-fns" // Formate the Date
 import axios from 'axios'
 import './Dashboard.css'
 import Swal from 'sweetalert2'; // SweetAlert2 for logout alert message 
-
+import Cookies from 'js-cookie';
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ const handleLogout = () => {
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       swalWithBootstrapButtons.fire({
         title: "Logged out!",
         text: "You have been successfully logged out.",
@@ -58,7 +58,7 @@ const handleLogout = () => {
   useEffect(()=> {
       const fetchUser = async()=> {
         try{
-          const token = localStorage.getItem('token');
+          const token = Cookies.get('token');
           const res = await axios.get('http://localhost:5000/api/auth/user', {
             headers: {
               Authorization: `Bearer ${token}`

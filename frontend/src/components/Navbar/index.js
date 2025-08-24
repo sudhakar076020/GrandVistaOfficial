@@ -12,6 +12,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const NavLinkList = [
   { id: "HOME", linkName: "Home", routePathName: "/" },
+  { id: "DASHBOARD", linkName: "Dashboard", routePathName: "/dashboard" },
   { id: "MENU", linkName: "Menu", routePathName: "/menu" },
   { id: "ABOUT", linkName: "About", routePathName: "/about" },
   {
