@@ -3,35 +3,35 @@ const Reservation = require("../models/Reservation");
 
 const router = express.Router();
 
-// @desc    Create a new reservation
+// CREATE reservation
 router.post("/", async (req, res) => {
   try {
-    const { name, email, phone, date, time, guests } = req.body;
-
-    const newReservation = new Reservation({
-      name,
-      email,
-      phone,
-      date,
-      time,
-      guests,
-    });
-
-    const savedReservation = await newReservation.save();
-    res.status(201).json(savedReservation);
+    const reservation = await Reservation.create(req.body);
+    res.status(201).json({ message: "Reservation created", reservation });
   } catch (error) {
-    res.status(500).json({ error: "Failed to create reservation" });
+    res.status(500).json({ message: "Error creating reservation", error });
   }
 });
 
-// @route   GET /api/reservations
-// @desc    Get all reservations
+// READ all Reservations
 router.get("/", async (req, res) => {
   try {
-    const reservations = await Reservation.find().sort({ date: 1 });
+    const reservations = await Reservation.find();
     res.json(reservations);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch reservations" });
+    res.status(500).json({ message: "Error fetching reservations", error });
+  }
+});
+
+// DELETE reservation
+router.delete("/:id", async (req, res) => {
+  try {
+    const reservation = await Reservation.findByIdAndDelete(req.params.id);
+    if (!reservation)
+      return res.status(404).json({ message: "Reservation not found" });
+    res.json({ message: "Reservation deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting reservation", error });
   }
 });
 

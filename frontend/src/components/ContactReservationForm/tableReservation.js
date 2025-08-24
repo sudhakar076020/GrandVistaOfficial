@@ -1,8 +1,13 @@
 import "./styles.css";
 
 import React, { useEffect, useState } from "react";
-
 import { Parallax } from "react-parallax"; //Parallax effect image
+
+import axios from "axios";
+
+// Alert Notification
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
 import Navbar from "../Navbar";
@@ -28,8 +33,7 @@ const reservationTimeSlots = [
   { id: "11:00 PM", timeDisplayText: "11:00 PM" },
 ];
 
-const API_URL = "http://localhost:5000/api/";
-const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
+const API_URL = "http://localhost:5000/api/reservations";
 
 // Component parallax banner image
 const parallaxBannerImage =
@@ -44,8 +48,22 @@ const TableReservation = () => {
     guests: 1,
   });
 
-  const tableReservationFormSubmit = (event) => {
+  const tableReservationFormSubmit = async (event) => {
     event.preventDefault();
+    try {
+      await axios.post(API_URL, reservationForm);
+      toast.success("Reservation created successfully!");
+      setReservationForm({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        time: "",
+        guests: 1,
+      });
+    } catch (error) {
+      toast.error("Error creating reservation");
+    }
     console.log("form submitted!");
   };
 
@@ -101,7 +119,7 @@ const TableReservation = () => {
                 <div className="form-group">
                   <label>Name*</label>
                   <input
-                    name="userName"
+                    name="name"
                     type="text"
                     placeholder="John"
                     required
@@ -112,7 +130,7 @@ const TableReservation = () => {
                 <div className="form-group">
                   <label>Email Address*</label>
                   <input
-                    name="userEmail"
+                    name="email"
                     type="email"
                     placeholder="email@gmail.com"
                     required
@@ -135,11 +153,11 @@ const TableReservation = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>No. of Person*</label>
+                  <label>No. of Guests*</label>
                   <input
-                    name="persons"
+                    name="guests"
                     type="number"
-                    placeholder="No. of Person"
+                    placeholder="No. of Guests"
                     required
                     value={reservationForm.guests}
                     onChange={handleChange}
@@ -151,7 +169,7 @@ const TableReservation = () => {
                 <div className="form-group">
                   <label>Date*</label>
                   <input
-                    name="reservationDate"
+                    name="date"
                     type="date"
                     required
                     value={reservationForm.date}
@@ -161,7 +179,7 @@ const TableReservation = () => {
                 <div className="form-group">
                   <label>Time*</label>
                   <select
-                    name="reservationTime"
+                    name="time"
                     value={reservationForm.time}
                     onChange={handleChange}
                   >
@@ -177,6 +195,11 @@ const TableReservation = () => {
             </form>
           </div>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          style={{ marginTop: "50px" }}
+        />
       </section>
       {/* Newsletter */}
       <Newsletter />

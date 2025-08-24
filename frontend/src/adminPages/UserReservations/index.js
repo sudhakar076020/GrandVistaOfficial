@@ -1,37 +1,42 @@
 import "./styles.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const reservationDetails = [
-  {
-    id: 1,
-    name: "Sudhakar",
-    email: "sudhakar@example.com",
-    phone: "123-456-7890",
-    noOfGuests: 2,
-    date: "2023-10-15",
-    time: "19:00",
-  },
-  {
-    id: 2,
-    name: "Tony Stark",
-    email: "tony@example.com",
-    phone: "987-654-3210",
-    noOfGuests: 4,
-    date: "2023-10-20",
-    time: "12:30",
-  },
-];
+import { format } from "date-fns"; // Date format
+
+const API_URL = "http://localhost:5000/api/reservations";
 
 const UserReservations = () => {
+  const [reservationsDetails, setReservationDetails] = useState([]);
+
+  useEffect(() => {
+    const fetchReservationsDetails = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        setReservationDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching reservation details:", error);
+      }
+    };
+    fetchReservationsDetails();
+  }, []);
+
+  // Format the date to "MMM dd yyyy Aug 24 2025"
+  const formatDate = (date) => {
+    if (!date) return "N/A";
+    return format(new Date(date), "MMM dd yyyy");
+  };
+
   return (
     <div className="user-reservations-details-card">
       <h2>Reserved Tables Details</h2>
       {/* Add your reservation details here */}
       <ul className="reservation-list">
-        {reservationDetails.length === 0 ? (
+        {reservationsDetails.length === 0 ? (
           <li className="no-reservation">No reservations found.</li>
         ) : (
           <>
-            {reservationDetails.map((reservation) => (
+            {reservationsDetails.map((reservation) => (
               <li key={reservation.id} className="reservation-item">
                 <p>
                   <strong>Name:</strong> {reservation.name}
@@ -43,10 +48,10 @@ const UserReservations = () => {
                   <strong>Phone:</strong> {reservation.phone}
                 </p>
                 <p>
-                  <strong>No. of Guests:</strong> {reservation.noOfGuests}
+                  <strong>No. of Guests:</strong> {reservation.guests}
                 </p>
                 <p>
-                  <strong>Date:</strong> {reservation.date}
+                  <strong>Date:</strong> {formatDate(reservation.date)}
                 </p>
                 <p>
                   <strong>Time:</strong> {reservation.time}
