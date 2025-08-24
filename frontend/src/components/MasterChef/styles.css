@@ -1,0 +1,178 @@
+.masterChef-container {
+  background-color: #0e0c0a; /* match dark theme */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.masterChef-subtitle {
+  color: #aaa;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 600px;
+  font-family: "Allura", cursive;
+  font-weight: 400;
+}
+
+/* Review carousel container */
+.masterChef-carousel {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 10px;
+}
+
+/* Review Card */
+.masterChef-card {
+  background: transparent;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.masterChef-card:hover {
+  transform: translateY(-6px);
+}
+
+.masterChef-image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #d4a25a;
+}
+
+.masterChef-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.masterChef-card h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.masterChef-role {
+  color: #d4a25a;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.masterChef-text {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 500px;
+  padding: 0 10px;
+}
+
+/* Slick Dots Styling */
+.slick-dots li button:before {
+  font-size: 10px;
+  color: #666 !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #d4a25a !important;
+  font-size: 12px !important;
+  transform: translateY(-6px);
+}
+
+/* ---------------------- */
+/* ✅ Responsive Styling */
+/* ---------------------- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .masterChef-subtitle {
+    font-size: 1.6rem;
+    max-width: 500px;
+  }
+
+  .masterChef-text {
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .masterChef-container {
+    padding: 40px 15px;
+  }
+
+  .masterChef-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .masterChef-image {
+    height: 90px;
+    width: 90px;
+  }
+
+  .masterChef-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .masterChef-role {
+    font-size: 0.8rem;
+  }
+
+  .masterChef-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    padding: 0 8px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .masterChef-container {
+    padding: 30px 10px;
+  }
+
+  .masterChef-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .masterChef-card {
+    padding: 20px 15px;
+    gap: 8px;
+  }
+
+  .masterChef-image {
+    height: 70px;
+    width: 70px;
+  }
+
+  .masterChef-card h3 {
+    font-size: 1rem;
+  }
+
+  .masterChef-role {
+    font-size: 0.75rem;
+  }
+
+  .masterChef-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+}

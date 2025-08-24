@@ -1,0 +1,316 @@
+/* Admin Container */
+.admin-container {
+  min-height: 100vh;
+  background-color: #121212; /* Deep luxury black */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Card wrapper */
+.admin-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+/* Admin Form */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background-color: #1e1e1e;
+  width: 450px;
+  padding: 18px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.admin-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+@media (min-width: 576px) {
+  .admin-form-row {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.admin-form-group label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #e2e2e2;
+}
+
+.admin-form-group input,
+.admin-form-group textarea,
+.admin-form-group select {
+  background: #2b2b2b;
+  border: 1px solid #3a3a3a;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #f1f1f1;
+  border-radius: 4px;
+  outline: none;
+}
+
+.admin-form-group input::placeholder,
+.admin-form-group textarea::placeholder,
+.admin-form-group select::placeholder {
+  color: #aaa;
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus,
+.admin-form-group select:focus {
+  border-color: #caa06a; /* Gold Accent */
+}
+
+/* Availability checkbox */
+.availability-label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+  color: #f1f1f1;
+  margin-top: 22px;
+}
+
+.availability-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #caa06a;
+}
+
+/* Add Button */
+.add-btn {
+  background: #caa06a;
+  color: #121212;
+  border: none;
+  padding: 10px 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-btn:hover {
+  background: #b48b54;
+}
+
+/* Food List Section */
+.food-list-container {
+  flex: 1;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 2px solid #2b2b2b;
+  padding: 10px;
+  border-radius: 8px;
+  background: #1a1a1a;
+}
+
+/* Right section */
+.admin-right-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Food List Search Box */
+.search-box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.search-group input,
+.total-foodsCount-group,
+.menu-category-tab select {
+  background: #2b2b2b;
+  border: 1px solid #3a3a3a;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #f1f1f1;
+  border-radius: 4px;
+  outline: none;
+  width: 200px;
+}
+
+.food-count {
+  color: #caa06a;
+  font-weight: 500;
+}
+
+.search-group input::placeholder {
+  color: #888;
+}
+
+.search-group input:focus {
+  border-color: #caa06a;
+}
+
+.food-items-title {
+  color: #f1f1f1;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+/* Food Cards */
+.admin-menu-section-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.admin-food-card {
+  width: 280px;
+  background: #1f1f1f;
+  border: 1px solid #2e2e2e;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.admin-food-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 10px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.edit-btn {
+  background: #caa06a;
+  color: #121212;
+}
+
+.edit-btn:hover {
+  background: #b48b54;
+}
+
+.delete-btn {
+  background: #c72c41;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: #b72a3e;
+}
+
+.preparationTime-card {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+/* Scrollbar */
+.food-list-container::-webkit-scrollbar,
+.admin-form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.food-list-container::-webkit-scrollbar-track,
+.admin-form::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+.food-list-container::-webkit-scrollbar-thumb,
+.admin-form::-webkit-scrollbar-thumb {
+  background: #caa06a;
+  border-radius: 10px;
+}
+
+.food-list-container::-webkit-scrollbar-thumb:hover,
+.admin-form::-webkit-scrollbar-thumb:hover {
+  background: #b48b54;
+}
+
+/* Firefox */
+.food-list-container,
+.admin-form {
+  scrollbar-width: thin;
+  scrollbar-color: #caa06a #1a1a1a;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 992px) {
+  .admin-card {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .food-list-container {
+    width: 100%;
+    max-height: 100vh;
+  }
+
+  .admin-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .food-card {
+    width: 100%;
+  }
+}
+
+/* Empty Food List Container */
+.empty-food-list-card {
+  width: 100%;
+  padding: 40px;
+  border: 2px dashed #444;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+}
+
+.empty-food-list-card p {
+  margin: 0;
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,149 @@
+.our-menu-section {
+  background-color: #0e0c0a;
+}
+
+.menu-section-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.food-card {
+  background: #1a1a1a; /* Dark card */
+  border: 1px solid rgba(255, 215, 128, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.food-card:hover {
+  transform: translateY(-6px);
+  border-color: #d4a25a;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Image */
+.food-image-container {
+  position: relative;
+  width: 100%;
+}
+
+.food-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Badges */
+.food-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.food-badge.right {
+  left: auto;
+  right: 10px;
+  background: #d4a25a;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Header */
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.food-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.food-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d4a25a;
+}
+
+/* Description */
+.food-description {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.5;
+}
+
+/* Footer */
+.food-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.order-btn {
+  background: #d4a25a;
+  color: #1a1a1a;
+  font-weight: bold;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.order-btn:hover {
+  background: #e6b869;
+}
+
+.preparationTime-card {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.food-time {
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .menu-section-container {
+    gap: 20px;
+  }
+  .food-card {
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .food-card {
+    max-width: 100%;
+  }
+  .food-image {
+    height: 160px;
+  }
+}
