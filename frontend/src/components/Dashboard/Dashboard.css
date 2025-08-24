@@ -1,0 +1,124 @@
+.dashboard-container {
+    height: 100vh;
+    border: 5px solid red;
+}
+
+.dashboard-card {
+    /* border: 5px solid; */
+    margin: 20px;
+    border-radius: 12px;
+    padding: 15px;
+    background: #2F3C7E;
+}
+
+.dashboard-card h1,
+.dashboard-card p {
+    color: #EDF4F2;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    /* border: 2px solid ; */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.profile-card i {
+    font-size: 32px;
+    color: #EDF4F2;
+    padding-right: 10px;
+}
+
+
+.user-name {
+    color: #EDF4F2;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-top: 15px;
+}
+
+.user-name span {
+    text-transform: uppercase;
+}
+
+
+.dashboard-card button {
+    color: #2F3C7E;
+    padding: 5px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+
+.dashboard-card button:hover {
+    background:  #e42528;
+    color: #EDF4F2;
+}
+
+
+/* SweetAlert2 button style */
+.logout-confirm-btn {
+  background-color: #28a745;
+  margin-left: 15px;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-cancel-btn {
+  background-color: #e42528;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+
+/* 🔁 1. Persistent Login Across Page Refresh
+🔔 2. User Notification System
+3. Public + Private Routes Setup
+4. Add Profile Page
+📊 5. Add Charts in Dashboard
+🔐 6. Change Password Feature
+🌐 7. Deploy the App
+🧪 8. Add Loading State & Error Handling
+📁 9. Start Week 3: Excel File Upload
+
+💬 What next?
+You can say things like:
+
+“I want to add notifications”
+
+“Let’s build profile page”
+
+“Let’s start Week 3: Excel upload”
+
+Just tell me what you want and I’ll walk you through it! */

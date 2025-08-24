@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Libre+Barcode+39+Text&family=Orbitron:wght@900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(135deg, #2F3C7E, #FBEAEB);
+}
+
+.form-card {
+  height: auto;
+  padding: 40px;
+  width: 380px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9px);
+
+}
+
+.form-card h2{
+    color: #2F3C7E;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  outline-color: #2F3C7E;
+}
+
+/* Password input container toggle password show/hide */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* space for icon */
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  outline-color: #2F3C7E;
+}
+
+.toggle-password-icon {
+  color: #2F3C7E;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+  margin-right: 5px;
+}
+
+/* Form submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #2F3C7E;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-color: #FBEAEB;
+  color: #2F3C7E;
+  font-weight: 500;
+}
+
+
+.form-word {
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+
+.form-word a {
+    font-size: 1rem;
+    padding-left: 5px;
+    color: #2F3C7E;
+}
+
+/* FaceBook and Google login buttons */
+.social-media-card {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.social-media-card button {
+  width: 100%;
+  padding: 10px 15px;
+  gap: 15px;
+  background: #ffffff;
+  outline: 2px #2F3C7E solid;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  margin: 5px;
+}
+
+.social-media-card button i {
+    font-size: 19px;
+    color: #2F3C7E;
+}
+
+
+@media screen and (max-width: 768px) {
+    .form-card{
+        width: 320px;
+    }
+}
+
+
+/* Loader  */
+.simple-loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
