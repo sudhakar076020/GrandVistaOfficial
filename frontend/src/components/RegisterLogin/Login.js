@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./index.css";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2"; // SweetAlert2 for login alert message
+import Swal from "sweetalert2";
 import Cookies from "js-cookie";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const Login = () => {
-  const navigate = useNavigate(); // ✅ put this first
+  const navigate = useNavigate();
 
   const [loginFormData, setLoginFormData] = useState({
     email: "",
@@ -19,7 +20,7 @@ const Login = () => {
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
-      navigate("/home"); //  absolute path
+      navigate("/home"); // absolute path
     }
   }, [navigate]);
 
@@ -37,7 +38,7 @@ const Login = () => {
         "http://localhost:5000/api/auth/login",
         loginFormData
       );
-      Cookies.set("token", res.data.token, { expires: 1, secure: true });
+      Cookies.set("token", res.data.token, { expires: 7, secure: true });
       Swal.fire({
         icon: "success",
         title: "Welcome back!",
@@ -45,7 +46,7 @@ const Login = () => {
         timer: 1500,
         showConfirmButton: false,
       });
-      navigate("/dashboard"); // ✅ correct path
+      navigate("/home");
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -56,44 +57,50 @@ const Login = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-section">
       <div className="form-card">
-        <h2>Login</h2>
-        <form onSubmit={submitLoginForm}>
-          <input
-            className="form-input"
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={inputChangeValue}
-          />
-          <div className="password-input-wrapper">
+        <h2 className="form-title">Login</h2>
+        <p className="form-subtitle">Welcome back! Please login</p>
+
+        <form className="contact-form" onSubmit={submitLoginForm}>
+          <div className="form-group">
+            <label>Email</label>
             <input
+              className="form-input"
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={inputChangeValue}
+              required
+            />
+          </div>
+
+          <div className="form-group password-field">
+            <label>Password</label>
+            <input
+              className="form-input"
               type={showPassword ? "text" : "password"}
               name="password"
-              placeholder="Password"
+              placeholder="Enter password"
               onChange={inputChangeValue}
+              required
               autoComplete="new-password"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
               className="toggle-password-icon"
             >
-              {showPassword ? (
-                <i className="fa-solid fa-eye-slash"></i>
-              ) : (
-                <i className="fa-solid fa-eye"></i>
-              )}
+              {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
             </span>
           </div>
-          <br />
+
           <button className="submit-btn" type="submit">
             Login
           </button>
         </form>
+
         <p className="form-word">
-          Don't have an account?
-          <Link to="/register">Register</Link>
+          Don’t have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>

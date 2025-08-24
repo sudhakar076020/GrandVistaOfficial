@@ -3,11 +3,10 @@ const Reservation = require("../models/Reservation");
 
 const router = express.Router();
 
-// @route   POST /api/reservations
 // @desc    Create a new reservation
 router.post("/", async (req, res) => {
   try {
-    const { name, email, phone, date, time, guests, message } = req.body;
+    const { name, email, phone, date, time, guests } = req.body;
 
     const newReservation = new Reservation({
       name,

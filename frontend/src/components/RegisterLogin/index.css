@@ -1,159 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Libre+Barcode+39+Text&family=Orbitron:wght@900&display=swap');
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Jost", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-
-
-.form-container {
+/* Register Form Section */
+.form-section {
+  background: #0e0c0a;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: linear-gradient(135deg, #2F3C7E, #FBEAEB);
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .form-card {
-  height: auto;
-  padding: 40px;
-  width: 380px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.9px);
-  -webkit-backdrop-filter: blur(5.9px);
-
+  background: #141210;
+  padding: 40px 30px;
+  border-radius: 8px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
-.form-card h2{
-    color: #2F3C7E;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 5px;
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  color: #9a8f86;
+  margin-bottom: 25px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #c9c6c3;
+  margin-bottom: 6px;
 }
 
 .form-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  outline-color: #2F3C7E;
+  background: #0e0c0a;
+  border: 1px solid #2a2725;
+  padding: 12px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  outline: none;
 }
 
-/* Password input container toggle password show/hide */
-.password-input-wrapper {
+.form-input::placeholder {
+  color: #777;
+}
+
+.form-input:focus {
+  border-color: #caa06a;
+}
+
+.password-field {
   position: relative;
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-}
-
-.password-input-wrapper input {
-  width: 100%;
-  padding-right: 40px; /* space for icon */
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  padding: 10px;
-  outline-color: #2F3C7E;
 }
 
 .toggle-password-icon {
-  color: #2F3C7E;
   position: absolute;
-  right: 10px;
+  right: 12px;
+  top: 38px;
+  color: #caa06a;
+  font-size: 20px;
   cursor: pointer;
-  font-size: 18px;
-  user-select: none;
-  margin-right: 5px;
 }
 
-/* Form submit Button */
 .submit-btn {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #2F3C7E;
-  color: white;
-  font-size: 1rem;
+  background: #caa06a;
+  color: #0e0c0a;
   border: none;
-  border-radius: 6px;
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-  background-color: #FBEAEB;
-  color: #2F3C7E;
-  font-weight: 500;
+  background: #b48b54;
 }
-
 
 .form-word {
-    margin-top: 10px;
-    font-size: 0.8rem;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #c9c6c3;
 }
-
 
 .form-word a {
-    font-size: 1rem;
-    padding-left: 5px;
-    color: #2F3C7E;
+  color: #caa06a;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
 }
 
-/* FaceBook and Google login buttons */
-.social-media-card {
-    display: flex;
-    flex-direction: row;
-    margin-top: 15px;
-}
-
-.social-media-card button {
-  width: 100%;
-  padding: 10px 15px;
-  gap: 15px;
-  background: #ffffff;
-  outline: 2px #2F3C7E solid;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: 400ms;
-  margin: 5px;
-}
-
-.social-media-card button i {
-    font-size: 19px;
-    color: #2F3C7E;
-}
-
-
-@media screen and (max-width: 768px) {
-    .form-card{
-        width: 320px;
-    }
-}
-
-
-/* Loader  */
-.simple-loader {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  animation: spin 1s linear infinite;
-  margin: 20px auto;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.form-word a:hover {
+  text-decoration: underline;
 }

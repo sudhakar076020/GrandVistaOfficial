@@ -1,13 +1,8 @@
 import "./styles.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Parallax } from "react-parallax"; //Parallax effect image
-
-import DatePicker from "react-datepicker"; //Date-picker npm
-// CSS Modules, react-datepicker-cssmodules.css
-// import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import "react-datepicker/dist/react-datepicker.css";
 
 // Components
 import Navbar from "../Navbar";
@@ -33,16 +28,40 @@ const reservationTimeSlots = [
   { id: "11:00 PM", timeDisplayText: "11:00 PM" },
 ];
 
+const API_URL = "http://localhost:5000/api/";
+const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
+
 // Component parallax banner image
 const parallaxBannerImage =
   "https://res.cloudinary.com/dehz5pshe/image/upload/v1755864194/composition-black-tableware-with-copy-space_cubinz.jpg";
 const TableReservation = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [reservationForm, setReservationForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    time: "",
+    guests: 1,
+  });
 
   const tableReservationFormSubmit = (event) => {
     event.preventDefault();
     console.log("form submitted!");
   };
+
+  // Handle form field changes
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setReservationForm({
+      ...reservationForm,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  // Change browser title
+  useEffect(() => {
+    document.title = "GrandVista | Reservation";
+  }, []);
   return (
     <>
       <Navbar />
@@ -86,6 +105,8 @@ const TableReservation = () => {
                     type="text"
                     placeholder="John"
                     required
+                    value={reservationForm.name}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -95,6 +116,8 @@ const TableReservation = () => {
                     type="email"
                     placeholder="email@gmail.com"
                     required
+                    value={reservationForm.email}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -107,6 +130,8 @@ const TableReservation = () => {
                     placeholder="Phone"
                     pattern="[0-9]{10}"
                     required
+                    value={reservationForm.phone}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -116,6 +141,8 @@ const TableReservation = () => {
                     type="number"
                     placeholder="No. of Person"
                     required
+                    value={reservationForm.guests}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -123,11 +150,21 @@ const TableReservation = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label>Date*</label>
-                  <input name="reservationDate" type="date" required />
+                  <input
+                    name="reservationDate"
+                    type="date"
+                    required
+                    value={reservationForm.date}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Time*</label>
-                  <select>
+                  <select
+                    name="reservationTime"
+                    value={reservationForm.time}
+                    onChange={handleChange}
+                  >
                     {reservationTimeSlots.map((time) => (
                       <option key={time.id}>{time.timeDisplayText}</option>
                     ))}

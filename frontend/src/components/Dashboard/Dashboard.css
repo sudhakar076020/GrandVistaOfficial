@@ -1,72 +1,74 @@
 .dashboard-container {
-    height: 100vh;
-    border: 5px solid red;
+  background: #0e0c0a;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 40px 20px;
 }
 
 .dashboard-card {
-    /* border: 5px solid; */
-    margin: 20px;
-    border-radius: 12px;
-    padding: 15px;
-    background: #2F3C7E;
-}
-
-.dashboard-card h1,
-.dashboard-card p {
-    color: #EDF4F2;
+  background: #141210;
+  padding: 40px 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #caa06a;
 }
 
 .profile-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    /* border: 2px solid ; */
-    margin-top: 15px;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.profile-card i {
-    font-size: 32px;
-    color: #EDF4F2;
-    padding-right: 10px;
+.dashboard-card h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #edf4f2;
+  margin-bottom: 12px;
 }
 
+.login-time,
+.user-email {
+  font-size: 14px;
+  color: #edf4f2;
+  margin: 6px 0;
+}
 
 .user-name {
-    color: #EDF4F2;
-    font-size: 1.5rem;
-    font-weight: 500;
-    padding-top: 15px;
+  text-transform: uppercase;
+  color: #caa06a; /* highlight username */
 }
 
-.user-name span {
-    text-transform: uppercase;
+.logout-button {
+  background: #caa06a;
+  color: #0e0c0a;
+  border: none;
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  align-self: flex-end;
 }
 
-
-.dashboard-card button {
-    color: #2F3C7E;
-    padding: 5px 15px;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: all 0.3s ease;
+.logout-button:hover {
+  background: #b48b54;
+  color: #edf4f2;
 }
 
-
-.dashboard-card button:hover {
-    background:  #e42528;
-    color: #EDF4F2;
-}
-
-
-/* SweetAlert2 button style */
+/* SweetAlert2 button styles */
 .logout-confirm-btn {
   background-color: #28a745;
   margin-left: 15px;
@@ -88,37 +90,65 @@
   cursor: pointer;
 }
 
-
 @media (max-width: 768px) {
-  .dashboard-container {
-    padding: 10px;
+  .dashboard-card {
+    padding: 20px;
     font-size: 14px;
   }
 }
 
+/* dashboard-content */
+.dashboard-content-card {
+  background-color: #0e0c0a;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  margin-top: 20px;
+  width: 100%;
+  border: 2px solid #caa06a;
+}
 
+.dashboard-tabs-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+}
 
+.dashboard-tab-btn {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #555;
+  border: none;
+  outline: none;
+  margin: 2px 15px;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px 2px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
 
+.dashboard-tab-btn:hover {
+  color: #caa06a;
+}
 
+.active-dashboard-tab {
+  border-bottom: 3px solid #caa06a !important;
+  color: #fff !important;
+  font-weight: bold;
+  transform: translateY(-5px);
+}
 
+.dashboard-content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #0e0c0a;
+}
 
-/* 🔁 1. Persistent Login Across Page Refresh
-🔔 2. User Notification System
-3. Public + Private Routes Setup
-4. Add Profile Page
-📊 5. Add Charts in Dashboard
-🔐 6. Change Password Feature
-🌐 7. Deploy the App
-🧪 8. Add Loading State & Error Handling
-📁 9. Start Week 3: Excel File Upload
-
-💬 What next?
-You can say things like:
-
-“I want to add notifications”
-
-“Let’s build profile page”
-
-“Let’s start Week 3: Excel upload”
-
-Just tell me what you want and I’ll walk you through it! */
+@media screen and (max-width: 768px) {
+  .dashboard-tab-btn {
+    margin: 0 0;
+    font-size: 1rem;
+  }
+}
