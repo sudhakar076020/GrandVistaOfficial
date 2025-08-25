@@ -2,12 +2,13 @@ import "./styles.css";
 
 import React, { useEffect, useState } from "react";
 import { Parallax } from "react-parallax"; //Parallax effect image
-
 import axios from "axios";
 
 // Alert Notification
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { ClipLoader } from "react-spinners"; // Loader
 
 // Components
 import Navbar from "../Navbar";
@@ -38,6 +39,8 @@ const API_URL = "http://localhost:5000/api/reservations";
 // Component parallax banner image
 const parallaxBannerImage =
   "https://res.cloudinary.com/dehz5pshe/image/upload/v1755864194/composition-black-tableware-with-copy-space_cubinz.jpg";
+
+// Table Reservation Component
 const TableReservation = () => {
   const [reservationForm, setReservationForm] = useState({
     name: "",
@@ -46,10 +49,22 @@ const TableReservation = () => {
     date: "",
     time: "",
     guests: 1,
+    bookedTime: new Date().toLocaleString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }),
   });
 
+  const [loader, setLoader] = useState(false); // Loader
+
+  // Table Reservation Form Submission
   const tableReservationFormSubmit = async (event) => {
     event.preventDefault();
+    setLoader(true); //Loader
     try {
       await axios.post(API_URL, reservationForm);
       toast.success("Reservation created successfully!");
@@ -61,8 +76,11 @@ const TableReservation = () => {
         time: "",
         guests: 1,
       });
+
+      setLoader(false); //Loader
     } catch (error) {
       toast.error("Error creating reservation");
+      setLoader(false); //Loader
     }
     console.log("form submitted!");
   };
@@ -80,6 +98,7 @@ const TableReservation = () => {
   useEffect(() => {
     document.title = "GrandVista | Reservation";
   }, []);
+
   return (
     <>
       <Navbar />
@@ -190,7 +209,11 @@ const TableReservation = () => {
                 </div>
               </div>
               <button type="submit" className="submit-btn">
-                BOOK TABLE
+                {loader ? (
+                  <ClipLoader color="#0e0c0a" size={20} />
+                ) : (
+                  "BOOK TABLE"
+                )}
               </button>
             </form>
           </div>

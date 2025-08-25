@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 // Components
 import OrderedFoods from "../OrderedFoods";
-// import UserReservations from "../UserReservations";
+import Navbar from "../Navbar";
 
 const dashboardTabsList = [
   { id: "ORDERED_FOOD", label: "Ordered Food" },
@@ -94,6 +94,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      <Navbar />
       {/* Dashboard Header */}
       <div className="dashboard-card">
         <div className="profile-card">

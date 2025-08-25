@@ -16,7 +16,15 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    phone: {
+      type: String,
+      required: true,
+    },
     password: {
+      type: String,
+      required: true,
+    },
+    registrationDate: { // Not in form auto created
       type: String,
       required: true,
     },

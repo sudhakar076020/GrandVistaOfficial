@@ -6,14 +6,21 @@ import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
+// Alert Notification
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ClipLoader } from "react-spinners"; // Loader
+
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    phone: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [loader, setLoader] = useState(false); // Loader
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -28,6 +35,7 @@ const Register = () => {
 
   const submitRegisterForm = async (event) => {
     event.preventDefault();
+    setLoader(true); //Loader
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/register",
@@ -40,6 +48,7 @@ const Register = () => {
       });
       navigate("/login");
       console.log(res.data);
+      setLoader(false); //Loader
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -47,6 +56,7 @@ const Register = () => {
         text: "Registration failed",
       });
       console.log(error);
+      setLoader(false); //Loader
     }
   };
 
@@ -81,6 +91,19 @@ const Register = () => {
             />
           </div>
 
+          <div className="form-group">
+            <label>Phone</label>
+            <input
+              className="form-input"
+              type="text"
+              name="phone"
+              placeholder="Enter phone number"
+              onChange={inputChangeValue}
+              required
+              pattern="[0-9]{10}"
+            />
+          </div>
+
           <div className="form-group password-field">
             <label>Password</label>
             <input
@@ -102,7 +125,7 @@ const Register = () => {
           </div>
 
           <button className="submit-btn" type="submit">
-            Register
+            {loader ? <ClipLoader color="#0e0c0a" size={20} /> : "REGISTER"}
           </button>
         </form>
 
@@ -110,6 +133,11 @@ const Register = () => {
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        style={{ marginTop: "50px" }}
+      />
     </div>
   );
 };

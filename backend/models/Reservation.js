@@ -25,6 +25,10 @@ const reservationSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  bookedTime: {
+    type: String,
+    required: true,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model("Reservation", reservationSchema);

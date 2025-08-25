@@ -19,7 +19,6 @@ const OurFoodMenu = () => {
     <FoodMenu.Consumer>
       {(value) => {
         const { menuList, activeCategoryTab } = value;
-        console.log(menuList.length);
         return (
           <div className="our-menu-section" id="menu">
             <h1 className="section-header-title">Our Menu</h1>

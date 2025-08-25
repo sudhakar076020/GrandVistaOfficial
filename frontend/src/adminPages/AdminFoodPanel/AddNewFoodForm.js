@@ -1,7 +1,16 @@
+import { ClipLoader } from "react-spinners"; // Loader
+
 const FoodForm = (props) => {
-  const { form, handleChange, handleSubmit, editingId, foodCategories } = props;
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    editingId,
+    foodCategories,
+    loader,
+  } = props;
   return (
-    <form className="admin-form" onSubmit={handleSubmit}>
+    <form className="admin-form" onSubmit={handleSubmit} >
       <div className="admin-form-row">
         <div className="admin-form-group">
           <label>Food Name*</label>
@@ -111,7 +120,13 @@ const FoodForm = (props) => {
       </div>
 
       <button type="submit" className="add-btn">
-        {editingId ? "Update Food" : "Add Food"}
+        {loader ? (
+          <ClipLoader size={20} color="#fff" />
+        ) : editingId ? (
+          "Update Food"
+        ) : (
+          "Add Food"
+        )}
       </button>
     </form>
   );

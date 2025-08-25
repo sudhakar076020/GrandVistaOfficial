@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+// Notification alert
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,7 +29,6 @@ const AdminFoodPanel = () => {
     category: foodCategories[0].id,
     imageUrl: "",
     isAvailable: true,
-    isVeg: true,
     preparationTime: "",
     rating: "",
   });
@@ -36,6 +36,8 @@ const AdminFoodPanel = () => {
   const [filteredFoodCategory, setFilteredFoodCategory] =
     useState("All Categories");
   const [searchFoodItem, setSearchFoodItem] = useState("");
+
+  const [loader, setLoader] = useState(false); // Loader
 
   // Fetch foods
   const fetchFoods = async () => {
@@ -70,6 +72,7 @@ const AdminFoodPanel = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
+    setLoader(true);
     e.preventDefault();
     try {
       if (editingId) {
@@ -86,14 +89,15 @@ const AdminFoodPanel = () => {
         category: foodCategories[0].id,
         imageUrl: "",
         isAvailable: true,
-        isVeg: true,
         preparationTime: "",
         rating: "",
       });
       setEditingId(null);
       fetchFoods();
+      setLoader(false);
     } catch {
       toast.error("Error while saving food!");
+      setLoader(false); //Loader
     }
   };
 
@@ -116,7 +120,11 @@ const AdminFoodPanel = () => {
   return (
     <>
       <AdminNavbar />
-      <div style={{ padding: "20px" }} className="admin-container">
+      <div
+        style={{ padding: "20px" }}
+        className="admin-container"
+        id="foodForm"
+      >
         <h2 className="section-header-title">Admin Food Panel</h2>
         <div className="admin-card">
           {/* Left: Food Form */}
@@ -126,6 +134,7 @@ const AdminFoodPanel = () => {
             handleSubmit={handleSubmit}
             editingId={editingId}
             foodCategories={foodCategories}
+            loader={loader}
           />
 
           {/* Right: Food List */}

@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const foodRoutes = require("./routes/foodRoutes");
 const userRoutes = require("./routes/auth");
 const reservationRoutes = require("./routes/reservationRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -17,6 +18,7 @@ connectDB();
 app.use("/api/foods", foodRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/reservations", reservationRoutes);
+app.use("/api/contact", contactRoutes);
 
 // test
 app.get("/", (req, res) => {

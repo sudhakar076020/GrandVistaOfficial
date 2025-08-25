@@ -1,0 +1,18 @@
+.admin-navbar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  background-color: #1a1a1a;
+  border: 1.5px solid #caa06a;
+  padding: 10px;
+  margin-right: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .admin-navbar-list {
+    display: none;
+  }
+}

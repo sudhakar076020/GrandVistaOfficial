@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middleware/authMiddleware");
+
 require("dotenv").config();
 
 // Middleware to verify token
@@ -21,8 +23,8 @@ const verifyToken = (req, res, next) => {
 
 // ✅ Register
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-
+  const { username, email, phone, password } = req.body;
+  const registrationDate = new Date();
   try {
     // check duplicates
     let emailExists = await User.findOne({ email });
@@ -40,7 +42,13 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // save user
-    const user = new User({ username, email, password: hashedPassword });
+    const user = new User({
+      username,
+      email,
+      phone,
+      password: hashedPassword,
+      registrationDate,
+    });
     await user.save();
 
     res.status(201).json({ message: "User registered successfully" });
@@ -80,16 +88,25 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// ✅ Get User (Protected)
-router.get("/user", verifyToken, async (req, res) => {
+//  Get User Lists
+router.get("/users", async (req, res) => {
   try {
-    const user = await User.findById(req.userId).select("-password");
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    res.json(user);
+    const users = await User.find().select("-password");
+    res.json(users);
   } catch (error) {
-    console.error("Error fetching user:", error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+});
+
+// DELETE reservation
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user)
+      return res.status(404).json({ message: "User not found" });
+    res.json({ message: "User deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting user", error });
   }
 });
 

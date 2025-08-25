@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./styles.css";
 
+// Alert Notification
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -22,10 +26,10 @@ const Newsletter = () => {
       // Fake API call (replace with your backend later)
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      setMessage("Thank you for subscribing!");
+      toast.success("Thank you for subscribing!");
       setEmail(""); // clear input after success
     } catch (error) {
-      setMessage("Something went wrong. Please try again later.");
+      toast.error("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -54,7 +58,11 @@ const Newsletter = () => {
           </button>
         </form>
 
-        {message && <p className="newsletter-message">{message}</p>}
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          style={{ marginTop: "50px" }}
+        />
       </div>
     </section>
   );

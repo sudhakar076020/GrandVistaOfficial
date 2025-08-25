@@ -10,7 +10,7 @@ import { IoCloseOutline } from "react-icons/io5";
 const AdminNavbarLinks = [
   { id: 1, label: "Food Panel", path: "/admin/food-panel" },
   { id: 2, label: "Reservations", path: "/admin/reservations" },
-  { id: 3, label: "Users", path: "/admin/users" },
+  { id: 3, label: "Users", path: "/admin/usersList" },
 ];
 
 const AdminNavbar = () => {
@@ -19,7 +19,7 @@ const AdminNavbar = () => {
       <div className="navbar-logo">GrandVista.</div>
 
       {/* Desktop menu */}
-      <ul className="navbar-list">
+      <ul className="admin-navbar-list">
         {AdminNavbarLinks.map((link) => (
           <Link to={link.path} key={link.id}>
             <li className="navbar-item">{link.label}</li>

@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
+import { ClipLoader } from "react-spinners"; // Loader
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -15,6 +17,7 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loader, setLoader] = useState(false); // Loader
 
   // If JWT token exists in cookies, skip login page
   useEffect(() => {
@@ -33,6 +36,7 @@ const Login = () => {
 
   const submitLoginForm = async (event) => {
     event.preventDefault();
+    setLoader(true); //Loader
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/login",
@@ -46,6 +50,7 @@ const Login = () => {
         timer: 1500,
         showConfirmButton: false,
       });
+      setLoader(false); //Loader
       navigate("/home");
     } catch (error) {
       Swal.fire({
@@ -53,6 +58,7 @@ const Login = () => {
         title: "Oops...",
         text: error.response?.data?.message || error.message,
       });
+      setLoader(false); //Loader
     }
   };
 
@@ -95,7 +101,7 @@ const Login = () => {
           </div>
 
           <button className="submit-btn" type="submit">
-            Login
+            {loader ? <ClipLoader color="#0e0c0a" size={20} /> : "LOGIN"}
           </button>
         </form>
 

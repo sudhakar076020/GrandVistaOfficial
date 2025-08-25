@@ -1,10 +1,15 @@
 import "./styles.css";
 
-import { Parallax } from "react-parallax"; // Parallax effect images
-import Swal from "sweetalert2"; // SweetAlert2
+import axios from "axios";
 
+import { Parallax } from "react-parallax"; // Parallax effect images
 import React, { useState } from "react";
-import emailjs from "@emailjs/browser"; // Send Email using EmailJS
+
+// Alert Notification
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { ClipLoader } from "react-spinners"; // Loader
 
 // React Icons
 import {
@@ -39,13 +44,22 @@ const addressDetails = {
   closingTime: "11: 00 PM",
 };
 
+// User sending mail
+const USER_API_URL = "http://localhost:5000/api/contact/user";
+
+// Admin sending mail
+const ADMIN_API_URL = "http://localhost:5000/api/contact/admin";
+const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
+
 const ContactUsForm = () => {
   const [contactFormData, setContactFormData] = useState({
     userName: "",
     userEmail: "",
+    subject: "",
     phone: "",
-    message: "",
+    comment: "",
   });
+  const [loader, setLoader] = useState(false);
 
   // Handle input changes
   const handleChange = (event) => {
@@ -53,46 +67,31 @@ const ContactUsForm = () => {
     setContactFormData({ ...contactFormData, [name]: value });
   };
 
-
   // Send Email for Contact Form
-  const sendContactForm = (event) => {
+  const sendContactForm = async (event) => {
     event.preventDefault();
+    setLoader(true); //Loader
+    try {
+      // Send mail to user
+      await axios.post(USER_API_URL, contactFormData);
+      // Send mail to admin
+      await axios.post(ADMIN_API_URL, contactFormData, ADMIN_HEADERS);
 
-    emailjs
-      .send(
-        "grandvistaofficial7602", // Service ID
-        "grandvista7602", //Template ID
-        contactFormData, //Send state object
-        "BxAorOfOS2UT5oM5X" //Public Key
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Message Sent Successfully!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          setContactFormData({
-            userName: "",
-            userEmail: "",
-            phone: "",
-            message: "",
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Failed to send, try again later",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      );
+      toast.success("Contact form submitted successfully!");
+      setContactFormData({
+        userName: "",
+        userEmail: "",
+        subject: "",
+        phone: "",
+        comment: "",
+      });
+      setLoader(false);
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error("Error submitting contact form");
+      setLoader(false); //Loader
+    }
+    console.log("form submitted!");
   };
 
   return (
@@ -202,23 +201,37 @@ const ContactUsForm = () => {
                   />
                 </div>
               </div>
-              <div className="form-group">
-                <label>Phone*</label>
-                <input
-                  name="phone"
-                  value={contactFormData.phone}
-                  type="tel"
-                  placeholder="Phone"
-                  onChange={handleChange}
-                  pattern="[0-9]{10}"
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Subject*</label>
+                  <input
+                    name="subject"
+                    value={contactFormData.subject}
+                    type="text"
+                    placeholder="Subject"
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone*</label>
+                  <input
+                    name="phone"
+                    value={contactFormData.phone}
+                    type="tel"
+                    placeholder="Phone"
+                    onChange={handleChange}
+                    pattern="[0-9]{10}"
+                    required
+                  />
+                </div>
               </div>
+
               <div className="form-group">
                 <label>Comments / Questions*</label>
                 <textarea
-                  name="message"
-                  value={contactFormData.message}
+                  name="comment"
+                  value={contactFormData.comment}
                   placeholder="Comments/ Question"
                   onChange={handleChange}
                   rows="4"
@@ -226,7 +239,11 @@ const ContactUsForm = () => {
                 ></textarea>
               </div>
               <button type="submit" className="submit-btn">
-                CONTACT US
+                {loader ? (
+                  <ClipLoader color="#0e0c0a" size={20} />
+                ) : (
+                  "CONTACT US"
+                )}
               </button>
             </form>
           </div>
@@ -238,6 +255,13 @@ const ContactUsForm = () => {
       <Newsletter />
       {/* Footer */}
       <Footer />
+
+      {/* Alert Notification */}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        style={{ marginTop: "50px" }}
+      />
     </>
   );
 };

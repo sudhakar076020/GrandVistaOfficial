@@ -92,6 +92,12 @@
   cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
 .submit-btn:hover {

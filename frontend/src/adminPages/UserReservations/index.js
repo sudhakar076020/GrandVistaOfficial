@@ -7,22 +7,28 @@ import { format } from "date-fns"; // Date format
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { MdDeleteOutline } from "react-icons/md"; //Delete Icon
+
 import AdminNavbar from "../AdminNavbar";
 
 const API_URL = "http://localhost:5000/api/reservations";
+const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
 
 const UserReservationsDetails = () => {
   const [reservationsDetails, setReservationDetails] = useState([]);
 
+  // Fetch Reservation Details
+  const fetchReservationsDetails = async () => {
+    try {
+      const response = await axios.get(API_URL, ADMIN_HEADERS);
+      setReservationDetails(response.data);
+    } catch (error) {
+      console.error("Error fetching reservation details:", error);
+    }
+  };
+
+  // Fetch reservations on component mount
   useEffect(() => {
-    const fetchReservationsDetails = async () => {
-      try {
-        const response = await axios.get(API_URL);
-        setReservationDetails(response.data);
-      } catch (error) {
-        console.error("Error fetching reservation details:", error);
-      }
-    };
     fetchReservationsDetails();
   }, []);
 
@@ -33,7 +39,7 @@ const UserReservationsDetails = () => {
   };
 
   // Send Email for Reservation confirmation
-  const handleSendEmail = async (reservation) => {
+  const handleSendConfirmationEmail = async (reservation) => {
     const reservationTableNumber = Math.floor(1000 + Math.random() * 9000); // Generate a random 4-digit table number
     try {
       const res = await axios.post(
@@ -46,7 +52,9 @@ const UserReservationsDetails = () => {
           guests: reservation.guests,
           date: reservation.date,
           time: reservation.time,
-        }
+          bookedTime: reservation.bookedTime,
+        },
+        ADMIN_HEADERS
       );
       toast.success(res.data.message);
     } catch (error) {
@@ -54,11 +62,45 @@ const UserReservationsDetails = () => {
     }
   };
 
+  // Send Email for Reservation Rejection
+  const handleSendRejectionEmail = async (reservation) => {
+    try {
+      const res = await axios.post(
+        `${API_URL}/send-rejection`,
+        {
+          userName: reservation.name,
+          userEmail: reservation.email,
+          phone: reservation.phone,
+          guests: reservation.guests,
+          date: reservation.date,
+          time: reservation.time,
+          bookedTime: reservation.bookedTime,
+        },
+        ADMIN_HEADERS
+      );
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(`Failed to send email: ${error.message}`);
+    }
+  };
+
+  // Handle delete action
+  const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      await axios.delete(`${API_URL}/${id}`, ADMIN_HEADERS);
+      toast.success("Reservation deleted successfully!");
+      fetchReservationsDetails();
+    } catch {
+      toast.error("Failed to delete reservation!");
+    }
+  };
+  
   return (
     <>
       <AdminNavbar />
       <div className="user-reservations-details-card">
-        <h2>Reserved Tables Details</h2>
+        <h2 className="section-header-title">Reserved Tables Details</h2>
         {/* Add your reservation details here */}
         <ul className="reservation-list">
           {reservationsDetails.length === 0 ? (
@@ -85,15 +127,36 @@ const UserReservationsDetails = () => {
                   <p>
                     <strong>Time:</strong> {reservation.time}
                   </p>
-                  <button
-                    type="button"
-                    className="send-mail-button"
-                    onClick={() => {
-                      handleSendEmail(reservation);
-                    }}
-                  >
-                    Send Mail
-                  </button>
+                  <p>
+                    <strong>Booked Time:</strong> {reservation.bookedTime}
+                  </p>
+                  <div className="reservation-actions-btns">
+                    <button
+                      type="button"
+                      className="confirmation-mail-button"
+                      onClick={() => {
+                        handleSendConfirmationEmail(reservation);
+                      }}
+                    >
+                      Confirmation
+                    </button>
+                    <button
+                      type="button"
+                      className="rejection-mail-button"
+                      onClick={() => {
+                        handleSendRejectionEmail(reservation);
+                      }}
+                    >
+                      Rejection
+                    </button>
+                    <button
+                      type="button"
+                      className="delete-button"
+                      onClick={() => handleDelete(reservation._id)}
+                    >
+                      <MdDeleteOutline />
+                    </button>
+                  </div>
                 </li>
               ))}
             </>

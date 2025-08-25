@@ -21,6 +21,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 // Admin panel for CRUD for the foodItems
 import AdminFoodPanel from "./adminPages/AdminFoodPanel/adminFoodPanel";
 import UserReservationsDetails from "./adminPages/UserReservations";
+import UsersList from "./adminPages/UsersList/usersList";
 
 class App extends Component {
   state = {
@@ -76,6 +77,7 @@ class App extends Component {
             path="/admin/reservations"
             element={<UserReservationsDetails />}
           />
+          <Route path="/admin/usersList" element={<UsersList />} />
 
           {/* Protected Dashboard */}
           <Route
