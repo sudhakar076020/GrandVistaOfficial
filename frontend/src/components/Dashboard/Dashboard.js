@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 // Components
 import OrderedFoods from "../OrderedFoods";
-import UserReservations from "../UserReservations";
+// import UserReservations from "../UserReservations";
 
 const dashboardTabsList = [
   { id: "ORDERED_FOOD", label: "Ordered Food" },
@@ -131,7 +131,7 @@ const Dashboard = () => {
         {/* Dashboard Content */}
         <div className="dashboard-content">
           {activeTab === "ORDERED_FOOD" && <OrderedFoods />}
-          {activeTab === "RESERVATION" && <UserReservations />}
+          {/* {activeTab === "RESERVATION" && <UserReservations />} */}
         </div>
       </div>
     </div>

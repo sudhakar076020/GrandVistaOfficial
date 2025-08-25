@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Components
-import Navbar from "../../components/Navbar";
+import AdminNavbar from "../AdminNavbar";
 import FoodForm from "./AddNewFoodForm";
 import FoodList from "./FoodList";
 
@@ -115,7 +115,7 @@ const AdminFoodPanel = () => {
 
   return (
     <>
-      <Navbar />
+      <AdminNavbar />
       <div style={{ padding: "20px" }} className="admin-container">
         <h2 className="section-header-title">Admin Food Panel</h2>
         <div className="admin-card">

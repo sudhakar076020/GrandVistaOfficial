@@ -47,11 +47,14 @@ const ContactUsForm = () => {
     message: "",
   });
 
+  // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setContactFormData({ ...contactFormData, [name]: value });
   };
 
+
+  // Send Email for Contact Form
   const sendContactForm = (event) => {
     event.preventDefault();
 

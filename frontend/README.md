@@ -97,3 +97,4 @@ https://preview.colorlib.com/theme/feliciano/index.html
 
 5.nodemon → auto restart server during development
 
+6.npm install nodemailer

@@ -20,6 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // Admin panel for CRUD for the foodItems
 import AdminFoodPanel from "./adminPages/AdminFoodPanel/adminFoodPanel";
+import UserReservationsDetails from "./adminPages/UserReservations";
 
 class App extends Component {
   state = {
@@ -70,7 +71,11 @@ class App extends Component {
           <Route path="/contact" element={<ContactUsForm />} />
 
           {/* Admin Panel */}
-          <Route path="/admin" element={<AdminFoodPanel />} />
+          <Route path="/admin/food-panel" element={<AdminFoodPanel />} />
+          <Route
+            path="/admin/reservations"
+            element={<UserReservationsDetails />}
+          />
 
           {/* Protected Dashboard */}
           <Route
