@@ -16,7 +16,9 @@ const AdminNavbarLinks = [
 const AdminNavbar = () => {
   return (
     <nav className="navbar-container">
-      <div className="navbar-logo">GrandVista.</div>
+      <Link to="/admin/food-panel">
+        <div className="navbar-logo">GrandVista.</div>
+      </Link>
 
       {/* Desktop menu */}
       <ul className="admin-navbar-list">

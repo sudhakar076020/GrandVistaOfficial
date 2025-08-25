@@ -193,6 +193,7 @@ const TableReservation = () => {
                     required
                     value={reservationForm.date}
                     onChange={handleChange}
+                    min={new Date().toISOString().split("T")[0]} // user can only select today or a future date, not past dates
                   />
                 </div>
                 <div className="form-group">

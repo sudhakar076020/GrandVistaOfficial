@@ -63,6 +63,9 @@ const UsersList = () => {
               {usersDetails.map((user) => (
                 <li key={user.id} className="reservation-item">
                   <p>
+                    <strong>UserID:</strong> {user._id}
+                  </p>
+                  <p>
                     <strong>Name:</strong> {user.username}
                   </p>
                   <p>

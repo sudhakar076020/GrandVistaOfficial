@@ -98,12 +98,22 @@ router.get("/users", async (req, res) => {
   }
 });
 
+//  Get User Details
+router.get("/user", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+});
+
 // DELETE reservation
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
-    if (!user)
-      return res.status(404).json({ message: "User not found" });
+    if (!user) return res.status(404).json({ message: "User not found" });
     res.json({ message: "User deleted" });
   } catch (error) {
     res.status(500).json({ message: "Error deleting user", error });

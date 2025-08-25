@@ -77,7 +77,7 @@ const Dashboard = () => {
         // Logged in - formatted Time
         const formatLoginTime = format(
           new Date(),
-          "EEEE, MMMM do yyyy, h:mm:ss a"
+          "EEEE, MMMM do yyyy"
         );
         setLoginTime(formatLoginTime); // Set Login Time
       } catch (error) {
@@ -103,7 +103,7 @@ const Dashboard = () => {
             {user && <span className="user-name"> {user.username}</span>}
           </h1>
           {user && <p className="user-email">Logged in as: {user.email}</p>}
-          <p className="login-time">Login time: {loginTime}</p>
+          <p className="login-time">Logged Date: {loginTime}</p>
         </div>
         <button type="button" onClick={handleLogout} className="logout-button">
           Logout
