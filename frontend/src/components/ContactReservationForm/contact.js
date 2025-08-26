@@ -5,8 +5,8 @@ import axios from "axios";
 import { Parallax } from "react-parallax"; // Parallax effect images
 import React, { useState } from "react";
 
-// Alert Notification
-import { ToastContainer, toast } from "react-toastify";
+// Notification alert
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { ClipLoader } from "react-spinners"; // Loader
@@ -87,11 +87,9 @@ const ContactUsForm = () => {
       });
       setLoader(false);
     } catch (error) {
-      console.error("Contact form error:", error);
       toast.error("Error submitting contact form");
       setLoader(false); //Loader
     }
-    console.log("form submitted!");
   };
 
   return (
@@ -255,13 +253,6 @@ const ContactUsForm = () => {
       <Newsletter />
       {/* Footer */}
       <Footer />
-
-      {/* Alert Notification */}
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        style={{ marginTop: "50px" }}
-      />
     </>
   );
 };

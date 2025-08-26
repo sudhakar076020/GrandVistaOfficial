@@ -6,9 +6,7 @@ import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-// Alert Notification
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { ClipLoader } from "react-spinners"; // Loader
 
 const Register = () => {
@@ -133,11 +131,7 @@ const Register = () => {
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        style={{ marginTop: "50px" }}
-      />
+
     </div>
   );
 };

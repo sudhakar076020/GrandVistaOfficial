@@ -2,8 +2,7 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // Notification alert
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 // Components
 import AdminNavbar from "../AdminNavbar";
@@ -149,12 +148,6 @@ const AdminFoodPanel = () => {
             foodCategories={foodCategories}
           />
         </div>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          style={{ marginTop: "50px" }}
-        />
       </div>
     </>
   );

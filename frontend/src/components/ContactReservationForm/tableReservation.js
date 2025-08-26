@@ -4,9 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Parallax } from "react-parallax"; //Parallax effect image
 import axios from "axios";
 
-// Alert Notification
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// Notification alert
+import { toast } from "react-toastify";
 
 import { ClipLoader } from "react-spinners"; // Loader
 
@@ -47,7 +46,7 @@ const TableReservation = () => {
     email: "",
     phone: "",
     date: "",
-    time: "",
+    time: reservationTimeSlots[0].id,
     guests: 1,
     bookedTime: new Date().toLocaleString("en-GB", {
       day: "2-digit",
@@ -67,7 +66,6 @@ const TableReservation = () => {
     setLoader(true); //Loader
     try {
       await axios.post(API_URL, reservationForm);
-      toast.success("Reservation created successfully!");
       setReservationForm({
         name: "",
         email: "",
@@ -76,11 +74,11 @@ const TableReservation = () => {
         time: "",
         guests: 1,
       });
-
       setLoader(false); //Loader
+      toast.success("Reservation created successfully!");
     } catch (error) {
-      toast.error("Error creating reservation");
       setLoader(false); //Loader
+      toast.error("Error creating reservation");
     }
     console.log("form submitted!");
   };
@@ -219,11 +217,6 @@ const TableReservation = () => {
             </form>
           </div>
         </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          style={{ marginTop: "50px" }}
-        />
       </section>
       {/* Newsletter */}
       <Newsletter />

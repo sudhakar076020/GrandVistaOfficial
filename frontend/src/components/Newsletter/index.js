@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./styles.css";
 
 // Alert Notification
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {  toast } from "react-toastify";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -57,12 +56,9 @@ const Newsletter = () => {
             {loading ? "Subscribing..." : "Subscribe"}
           </button>
         </form>
+        {message && <p className="newsletter-message">{message}</p>}
 
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          style={{ marginTop: "50px" }}
-        />
+    
       </div>
     </section>
   );

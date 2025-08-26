@@ -4,8 +4,7 @@ import axios from "axios";
 
 import { format } from "date-fns"; // Date format
 // Toast Notifications
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {  toast } from "react-toastify";
 
 import { MdDeleteOutline } from "react-icons/md"; //Delete Icon
 
@@ -162,11 +161,7 @@ const UserReservationsDetails = () => {
             </>
           )}
         </ul>
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          style={{ marginTop: "50px" }}
-        />
+  
       </div>
     </>
   );

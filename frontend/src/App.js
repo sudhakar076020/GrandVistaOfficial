@@ -5,6 +5,10 @@ import FoodMenu from "./context/menuContext";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
+// Toast Alert notification
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // Components
 import Home from "./components/Home";
 import About from "./components/About";
@@ -92,6 +96,13 @@ class App extends Component {
           {/* Catch-all for unknown routes */}
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
+
+        {/* Only one ToastContainer in the app */}
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          style={{ marginTop: "53px" }}
+        />
       </FoodMenu.Provider>
     );
   }
