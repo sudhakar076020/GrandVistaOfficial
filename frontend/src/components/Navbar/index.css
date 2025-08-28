@@ -57,7 +57,7 @@
 }
 
 .active {
-  color: #caa06a;
+  color: #caa06a !important;
 }
 
 .navbar-button {

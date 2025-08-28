@@ -2,7 +2,7 @@ import "./styles.css";
 
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseOutline } from "react-icons/io5";
@@ -16,16 +16,22 @@ const AdminNavbarLinks = [
 const AdminNavbar = () => {
   return (
     <nav className="navbar-container">
-      <Link to="/admin/food-panel">
+      <NavLink to="/admin/food-panel">
         <div className="navbar-logo">GrandVista.</div>
-      </Link>
+      </NavLink>
 
       {/* Desktop menu */}
       <ul className="admin-navbar-list">
         {AdminNavbarLinks.map((link) => (
-          <Link to={link.path} key={link.id}>
-            <li className="navbar-item">{link.label}</li>
-          </Link>
+          <NavLink
+            to={link.path}
+            key={link.id}
+            className={({ isActive }) =>
+              `navbar-item ${isActive ? "active" : ""}`
+            }
+          >
+            {link.label}
+          </NavLink>
         ))}
       </ul>
 
@@ -57,9 +63,15 @@ const AdminNavbar = () => {
               </button>
               <ul className="drawer-menu-list">
                 {AdminNavbarLinks.map((link, index) => (
-                  <Link to={link.path} onClick={close}>
-                    <li className="drawer-item">{link.label}</li>
-                  </Link>
+                  <NavLink
+                    to={link.path}
+                    onClick={close}
+                    className={({ isActive }) =>
+                      `drawer-item ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
                 ))}
               </ul>
               <div className="drawer-footer">

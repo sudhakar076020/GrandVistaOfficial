@@ -1,67 +1,58 @@
-import { useState } from "react";
-
-import "./index.css";
+import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion"; 
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { Link } from "react-router-dom";
-
-import { motion } from "framer-motion"; // Importing framer-motion for animations
 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseOutline } from "react-icons/io5";
+
+import "./index.css";
 
 const NavLinkList = [
   { id: "HOME", linkName: "Home", routePathName: "/home" },
   { id: "DASHBOARD", linkName: "Dashboard", routePathName: "/dashboard" },
   { id: "MENU", linkName: "Menu", routePathName: "/menu" },
   { id: "ABOUT", linkName: "About", routePathName: "/about" },
-  {
-    id: "CONTACT",
-    linkName: "Contact",
-    routePathName: "/contact",
-  },
-  {
-    id: "BOOKTABLE",
-    linkName: "Book Table",
-    routePathName: "/tableReservation",
-  },
+  { id: "CONTACT", linkName: "Contact", routePathName: "/contact" },
+  { id: "BOOKTABLE", linkName: "Book Table", routePathName: "/tableReservation" },
 ];
 
 const Navbar = () => {
-  const [active, setActive] = useState(NavLinkList[0].id);
   return (
     <nav className="navbar-container">
+      {/* Logo */}
       <motion.div
         initial={{ opacity: 0, x: -80 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
       >
-        <Link to="/home">
+        <NavLink to="/home">
           <div className="navbar-logo">GrandVista.</div>
-        </Link>
+        </NavLink>
       </motion.div>
 
       {/* Desktop menu */}
       <motion.div
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 1, x: -80 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
       >
         <ul className="navbar-list">
           {NavLinkList.map((link) => (
-            <Link to={link.routePathName} key={link.id}>
-              <li
-                className={`navbar-item ${active === link.id ? "active" : ""}`}
-                onClick={() => setActive(link.id)}
-              >
-                {link.linkName}
-              </li>
-            </Link>
+            <NavLink
+              key={link.id}
+              to={link.routePathName}
+              className={({ isActive }) =>
+                `navbar-item ${isActive ? "active" : ""}`
+              }
+            >
+              {link.linkName}
+            </NavLink>
           ))}
         </ul>
       </motion.div>
 
-      {/* Small device menu */}
+      {/* Mobile / Small device menu */}
       <div className="popup-wrapper">
         <Popup
           trigger={(open) => (
@@ -101,9 +92,15 @@ const Navbar = () => {
                     transition={{ duration: 0.8, delay: index * 0.2 + 0.2 }}
                     key={link.id}
                   >
-                    <Link to={link.routePathName} onClick={close}>
-                      <li className="drawer-item">{link.linkName}</li>
-                    </Link>
+                    <NavLink
+                      to={link.routePathName}
+                      onClick={close}
+                      className={({ isActive }) =>
+                        `drawer-item ${isActive ? "active" : ""}`
+                      }
+                    >
+                      {link.linkName}
+                    </NavLink>
                   </motion.div>
                 ))}
               </ul>
