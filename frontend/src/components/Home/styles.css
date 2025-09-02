@@ -18,11 +18,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-size: cover;
+  min-height: 100vh;
+
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1521917441209-e886f0404a7b?q=80&w=1460&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    url("https://images.unsplash.com/photo-1667388968964-4aa652df0a9b?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
 
 .banner-content {
   display: flex;
