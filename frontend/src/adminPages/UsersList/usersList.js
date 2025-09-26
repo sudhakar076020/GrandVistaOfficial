@@ -3,13 +3,13 @@ import axios from "axios";
 
 import { format } from "date-fns"; // Date format
 // Toast Notifications
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { MdDeleteOutline } from "react-icons/md"; //Delete Icon
 
 import AdminNavbar from "../AdminNavbar";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = `${process.env.API_URL}/api/auth`;
 const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
 
 const UsersList = () => {
@@ -92,7 +92,6 @@ const UsersList = () => {
             </>
           )}
         </ul>
-
       </div>
     </>
   );

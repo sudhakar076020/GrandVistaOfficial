@@ -45,7 +45,7 @@ const addressDetails = {
 };
 
 // User sending mail
-const API_URL = `${process.env.API_URL}/api/contact/user`;
+const USER_API_URL = `${process.env.API_URL}/api/contact/user`;
 
 // Admin sending mail
 const ADMIN_API_URL = `${process.env.API_URL}/api/contact/admin`;

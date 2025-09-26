@@ -9,7 +9,7 @@ import AdminNavbar from "../AdminNavbar";
 import FoodForm from "./AddNewFoodForm";
 import FoodList from "./FoodList";
 
-const API_URL = "http://localhost:5000/api/foods";
+const API_URL = `${process.env.API_URL}/api/foods`;
 const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
 
 const foodCategories = [

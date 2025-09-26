@@ -10,7 +10,7 @@ import { MdDeleteOutline } from "react-icons/md"; //Delete Icon
 
 import AdminNavbar from "../AdminNavbar";
 
-const API_URL = "http://localhost:5000/api/reservations";
+const API_URL = `${process.env.API_URL}/api/reservations`;
 const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
 
 const UserReservationsDetails = () => {
