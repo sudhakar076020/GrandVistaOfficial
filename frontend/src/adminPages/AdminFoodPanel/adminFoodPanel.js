@@ -43,6 +43,7 @@ const AdminFoodPanel = () => {
     try {
       const res = await axios.get(API_URL, ADMIN_HEADERS);
       setFoods(res.data);
+      console.log(res.data);
     } catch (err) {
       toast.error("Failed to fetch food items!");
     }
