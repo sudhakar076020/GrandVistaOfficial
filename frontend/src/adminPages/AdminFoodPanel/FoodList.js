@@ -5,17 +5,17 @@ import { MdOutlineModeEditOutline, MdOutlineDelete } from "react-icons/md";
 
 const FoodList = (props) => {
   const {
-    foods,
+    foods = [], // default to empty array
     filteredFoodCategory,
     searchFoodItem,
     handleCategoryChange,
     handleSearchChange,
     handleEdit,
     handleDelete,
-    foodCategories,
+    foodCategories = [], // default to empty array
   } = props;
 
-  // Apply both category and search filters
+  // Apply both category and search filters safely
   const filteredFoods = foods
     .filter((food) =>
       filteredFoodCategory === "All Categories"
@@ -69,7 +69,7 @@ const FoodList = (props) => {
           ) : (
             filteredFoods.map((food, index) => (
               <motion.li
-                key={food._id}
+                key={food._id || index}
                 className="food-card admin-food-card"
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const FoodList = (props) => {
                   </span>
                   <img
                     src={food.imageUrl}
-                    alt={food.name}
+                    alt={food.foodName}
                     className="food-image"
                   />
                 </div>

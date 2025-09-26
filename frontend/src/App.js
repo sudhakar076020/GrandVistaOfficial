@@ -27,7 +27,6 @@ import AdminFoodPanel from "./adminPages/AdminFoodPanel/adminFoodPanel";
 import UserReservationsDetails from "./adminPages/UserReservations";
 import UsersList from "./adminPages/UsersList/usersList";
 
-
 const API_URL = process.env.API_URL;
 
 class App extends Component {

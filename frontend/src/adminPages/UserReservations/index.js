@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { format } from "date-fns"; // Date format
 // Toast Notifications
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { MdDeleteOutline } from "react-icons/md"; //Delete Icon
 
@@ -94,7 +94,7 @@ const UserReservationsDetails = () => {
       toast.error("Failed to delete reservation!");
     }
   };
-  
+
   return (
     <>
       <AdminNavbar />
@@ -161,7 +161,6 @@ const UserReservationsDetails = () => {
             </>
           )}
         </ul>
-  
       </div>
     </>
   );
