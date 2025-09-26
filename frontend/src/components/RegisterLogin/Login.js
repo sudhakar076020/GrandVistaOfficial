@@ -8,6 +8,8 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 import { ClipLoader } from "react-spinners"; // Loader
 
+const API_URL = process.env.API_URL;
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -38,10 +40,7 @@ const Login = () => {
     event.preventDefault();
     setLoader(true); //Loader
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        loginFormData
-      );
+      const res = await axios.post(`${API_URL}/api/auth/login`, loginFormData);
       Cookies.set("token", res.data.token, { expires: 7, secure: true });
       Swal.fire({
         icon: "success",

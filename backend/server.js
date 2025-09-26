@@ -8,7 +8,12 @@ const contactRoutes = require("./routes/contactRoutes");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin:
+      "http://grand-vista-official-858ixf16p-sudhakars-projects-ae63ed6c.vercel.app",
+  })
+);
 app.use(express.json());
 
 // connect DB

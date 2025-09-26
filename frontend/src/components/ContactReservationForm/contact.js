@@ -45,10 +45,10 @@ const addressDetails = {
 };
 
 // User sending mail
-const USER_API_URL = "http://localhost:5000/api/contact/user";
+const API_URL = `${process.env.API_URL}/api/contact/user`;
 
 // Admin sending mail
-const ADMIN_API_URL = "http://localhost:5000/api/contact/admin";
+const ADMIN_API_URL = `${process.env.API_URL}/api/contact/admin`;
 const ADMIN_HEADERS = { headers: { "x-user-role": "admin" } };
 
 const ContactUsForm = () => {

@@ -33,7 +33,7 @@ const reservationTimeSlots = [
   { id: "11:00 PM", timeDisplayText: "11:00 PM" },
 ];
 
-const API_URL = "http://localhost:5000/api/reservations";
+const API_URL = `${process.env.API_URL}/api/reservations`;
 
 // Component parallax banner image
 const parallaxBannerImage =

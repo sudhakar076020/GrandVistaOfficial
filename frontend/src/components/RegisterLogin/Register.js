@@ -6,8 +6,9 @@ import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-
 import { ClipLoader } from "react-spinners"; // Loader
+
+const API_URL = process.env.API_URL;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -35,10 +36,7 @@ const Register = () => {
     event.preventDefault();
     setLoader(true); //Loader
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        formData
-      );
+      const res = await axios.post(`${API_URL}/api/auth/register`, formData);
       Swal.fire({
         title: "Registration successful! Please Login",
         icon: "success",
@@ -131,7 +129,6 @@ const Register = () => {
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
-
     </div>
   );
 };

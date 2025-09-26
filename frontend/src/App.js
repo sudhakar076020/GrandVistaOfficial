@@ -27,6 +27,8 @@ import AdminFoodPanel from "./adminPages/AdminFoodPanel/adminFoodPanel";
 import UserReservationsDetails from "./adminPages/UserReservations";
 import UsersList from "./adminPages/UsersList/usersList";
 
+const API_URL = process.env.API_URL;
+
 class App extends Component {
   state = {
     menuList: [],
@@ -39,7 +41,7 @@ class App extends Component {
 
   fetchFoodItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/foods/");
+      const res = await axios.get(`${API_URL}/api/foods/`);
       this.setState({ menuList: res.data });
     } catch (err) {
       console.error("Error fetching foods:", err);
